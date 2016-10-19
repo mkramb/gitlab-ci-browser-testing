@@ -1,5 +1,16 @@
-FROM mhart/alpine-node:latest
+FROM smebberson/alpine-nginx-nodejs:4.2.2
 
-# Init packages
-RUN apk update
-RUN apk add xvfb openjdk7-jre chromium
+# install build tools
+RUN \
+  apk add --update \
+	build-base
+
+# install python dev tools
+RUN \
+  apk add --update \
+	python \
+	python-dev \
+	py-pip
+
+# install dumb-init from source
+RUN pip install dumb-init
